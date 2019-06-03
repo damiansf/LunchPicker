@@ -7,6 +7,7 @@ def addOption(options, numOptions, fileName):
 	save(options, fileName)
 	numOptions += 1
 	print("\nNew Option Added\n")
+	listOptions(options)
 def removeOption(options, numOptions, fileName):
 	if numOptions == 0:
 		print("No options provided, please add some lunch options")
@@ -22,8 +23,10 @@ def removeOption(options, numOptions, fileName):
 			print("INVALID INPUT, NUMBER DOES NOT CORRESPOND TO OPTION")
 
 def save(options, fileName):
+	data = {}
+	data["Options"] = options
 	with open(fileName, 'w') as saveFile:
-		json.dump(options, saveFile)
+		json.dump(data, saveFile)
 
 def pickOption(options, numOptions):
 	if numOptions == 0:
