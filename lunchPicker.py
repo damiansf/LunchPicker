@@ -5,7 +5,6 @@ def addOption(options, numOptions, fileName):
 	newOption = str(input("Enter name of new Lunch option:\n"))
 	options.append(newOption)
 	save(options, fileName)
-	numOptions += 1
 	print("\nNew Option Added\n")
 	listOptions(options)
 def removeOption(options, numOptions, fileName):
@@ -16,7 +15,6 @@ def removeOption(options, numOptions, fileName):
 		indexRM = int(input("\nEnter a number that coresponds to a option you want removed:\n"))
 		if indexRM >= 1 and indexRM <= numOptions:
 			options.remove(options[indexRM-1])
-			numOptions -= 1
 			save(options, fileName)
 			print("\nOption removed\n")
 		else:
@@ -53,9 +51,12 @@ with open(fileName, 'r') as myFile:
 	options = (json.load(myFile))["Options"]
 	numOptions = len(options)
 
+	print(numOptions)
+
 	userInput = ""
 
 	while userInput != 'q':
+		numOptions = len(options)
 		userInput = str(input(("\nEnter A to add a new lunch option, R to remove a lunch option, L to list all lunch options, P to pick your lunch spot and Q if you would like to quit:\n\n"))).lower()
 
 		if userInput == 'q':
